@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using AirportInspection.Services;
+using Microsoft.Extensions.Logging;
 
 namespace AirportInspection
 {
@@ -19,8 +20,15 @@ namespace AirportInspection
     		builder.Logging.AddDebug();
 #endif
 
+            // Registering services and view models for dependency injection
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<ViewModels.MainPageViewModel>();
+
+            // Database initialisation
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "inspections.db3");
+            builder.Services.AddSingleton(
+                new InspectionDatabase(dbPath)
+            );
 
             return builder.Build();
         }
