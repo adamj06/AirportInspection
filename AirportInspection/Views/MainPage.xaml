@@ -1,6 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:AirportInspection.Models"
+             xmlns:viewmodels="clr-namespace:AirportInspection.ViewModels"
+             x:DataType="viewmodels:MainPageViewModel"
              x:Class="AirportInspection.MainPage">
+
+    <Grid Padding="10" RowDefinitions="Auto, *" ColumnDefinitions="*" RowSpacing="20">
+        <Label Text="Inspections"
+               FontSize="24"
+               FontAttributes="Bold"
+               HorizontalTextAlignment="Center"/>
+        <CollectionView ItemsSource="{Binding Inspections}"
+                        Grid.Row="1"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Inspection">
+                    <Border Margin="0,5"
+                           Padding="10">
+                        <StackLayout>
+                            <Label Text="{Binding AssetName}"
+                                   FontAttributes="Bold"
+                                   FontSize="18"/>
+                            <Label Text="{Binding AssetType}"
+                                   FontSize="14"/>
+                            <Label Text="{Binding Status, StringFormat='Status: {0}'}"
+                                   FontSize="14"/>
+                            <Label Text="{Binding Notes}"
+                                   FontSize="14"/>
+                            <Label Text="{Binding Timestamp, StringFormat='Date: {0:MM/dd/yyyy}'}"
+                                   FontSize="14"/>
+                        </StackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 
 </ContentPage>

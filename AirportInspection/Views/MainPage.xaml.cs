@@ -1,10 +1,13 @@
-﻿namespace AirportInspection
+﻿using AirportInspection.ViewModels;
+
+namespace AirportInspection
 {
     public partial class MainPage : ContentPage
     {
-        public MainPage()
+        public MainPage(MainPageViewModel vm)
         {
             InitializeComponent();
+            BindingContext = vm;
         }
     }
 }

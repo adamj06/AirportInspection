@@ -19,6 +19,9 @@ namespace AirportInspection
     		builder.Logging.AddDebug();
 #endif
 
+            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<ViewModels.MainPageViewModel>();
+
             return builder.Build();
         }
     }
